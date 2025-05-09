@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HYBE-CORP Subscription Validation - Secure your access to premium content.">
+  <meta name="author" content="HYBE CORP">
+  <meta name="robots" content="index, follow">
+  <title>HYBE-CORP: Subscription Validation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #e9ecef, #dee2e6);
+      color: #212529;
+      overflow-x: hidden;
+    }
+    .container {
+      margin-top: 100px;
+      max-width: 650px;
+      z-index: 10;
+      position: relative;
+    }
+    .logo-container {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .logo-container img {
+      width: 200px; /* Increased logo size */
+      height: auto;
+    }
+    .card {
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
+      padding: 40px;
+      position: relative;
+      z-index: 1;
+    }
+    .btn-primary {
+      background: linear-gradient(90deg, #007bff, #6610f2);
+      border-radius: 30px;
+      font-size: 1.2rem;
+      padding: 12px 30px;
+      transition: transform 0.2s;
+    }
+    .btn-primary:hover {
+      transform: scale(1.1);
+    }
+    footer {
+      text-align: center;
+      background-color: #007bff;
+      color: white;
+      padding: 15px 0; /* Reduced padding for compact footer */
+      z-index: 5;
+      font-size: 0.9rem; /* Smaller font for balance */
+    }
+    footer a {
+      color: #ffd700;
+    }
+    #particles-js {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <div class="container" data-aos="fade-up">
+    <div class="logo-container">
+      <img src="https://logotyp.us/file/hybe.svg" alt="HYBE Logo">
+    </div>
+    <div class="card" data-aos="zoom-in" data-aos-delay="300">
+      <h2 class="text-center text-primary fw-bold">HYBE-License Subscription Validation</h2>
+      <p class="text-center text-muted mb-4">Enter your Subscription ID to verify HYBE-License access.</p>
+      <div class="mb-3">
+        <input type="text" id="codeInput" class="form-control form-control-lg" placeholder="Enter Subscription ID" aria-label="Subscription ID" required>
+      </div>
+      <button class="btn btn-primary w-100" onclick="validateSubscription()" aria-label="Validate Subscription">
+        <i class="bi bi-shield-check"></i> Validate Subscription
+      </button>
+    </div>
+  </div>
+  <footer>
+    <p>© 2025 HYBE Corp. All rights reserved.</p>
+    <p>
+      <a href="https://www.hybecorp.com" target="_blank">Explore HYBE Corp</a> | 
+      <a href="mailto:hybe.corp@aol.com">Contact Us</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      AOS.init();
+      particlesJS("particles-js", {
+        particles: {
+          number: { value: 80, density: { enable: true, value_area: 800 } },
+          shape: { type: "circle" },
+          opacity: { value: 0.4, random: true, anim: { enable: true, speed: 1, opacity_min: 0 } },
+          size: { value: 3, random: true, anim: { enable: false } },
+          line_linked: { enable: true, distance: 150, color: "#007bff", opacity: 0.4, width: 1 }
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: { enable: true, mode: "repulse" },
+            onclick: { enable: true, mode: "push" }
+          }
+        }
+      });
+    });
+
+    async function validateSubscription() {
+      const subscriptionId = document.getElementById("codeInput").value.trim();
+      const idRegex = /^[a-zA-Z0-9-]+$/;
+      if (!subscriptionId || !idRegex.test(subscriptionId)) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Invalid Input',
+          text: 'Please enter a valid Subscription ID.',
+          showClass: { popup: 'animate__animated animate__shakeX' },
+          hideClass: { popup: 'animate__animated animate__fadeOut' }
+        });
+        return;
+      }
+
+      showProgressLoader();
+
+      setTimeout(async () => {
+        try {
+          const response = await fetch("/verify", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ subscription_id: subscriptionId }),
+          });
+          if (!response.ok) {
+            console.error(`HTTP error! Status: ${response.status}`);
+            throw new Error("Network response was not ok");
+          }
+          const result = await response.json();
+          Swal.close();
+          if (result.success) {
+            Swal.fire({
+              icon: 'error',
+              title: 'SUBSCRIPTION UPGRADE REQUIRED To PROCEED⚠️',
+              html: `
+                <p><strong>Full Name: </strong>${result.Full_name || "N/A"}</p>
+                <p><strong>Subscription Status: </strong>${result.Status || "N/A"}</p>
+                <p><strong>Activation Date: </strong>${result.Activation_Date || "N/A"}</p>
+                <p><strong>Expiration Date: </strong>${result.Expiration_Date || "N/A"}</p>
+                <p><strong>HYBE-License PIN: </strong>${result.HYBE_License_PIN || "N/A"}</p>
+                <p><strong>HYBE-License Info: </strong>${result.HYBE_Chat_License_info || "N/A"}</p>
+                <p><strong>HYBE-License Status: </strong>${result.HYBE_License_Status || "N/A"}</p>
+                <p><strong>Current ID Level: </strong>${result.Current_ID_Level || "N/A"}</p>
+                <p><strong>Upgrade Fee Due: </strong>${result.HYBE_GOLDEN_Upgrade_fee || "N/A"}</p>
+                <p><span style="color: red; font-weight: bold; text-decoration: underline;">[NOTE]</span>: 
+                  <span style="font-weight: bold; color: #007bff;">[No active UPGRADE on your subscription ID], Your current subscription is on the [Basic Level 1 plan], which does not grant access to the HYBE-License. Kindly reach out to our customer support team to upgrade your Subscription ID.</span></p>
+              `,
+            });
+          } else {
+            Swal.close();
+            Swal.fire({
+              icon: 'error',
+              title: 'Validation Failed',
+              text: 'Invalid Subscription ID.',
+            });
+          }
+        } catch (error) {
+          Swal.close();
+          console.error('Validation error:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'An error occurred while verifying the Subscription ID. Please try again.',
+          });
+        }
+      }, 5000);
+    }
+
+    function showProgressLoader() {
+      let progress = 0;
+      Swal.fire({
+        title: 'Validating ID...',
+        html: `<div id="progressText">Validating: <b>0%</b></div>
+               <div style="background: #ddd; height: 10px; border-radius: 5px; margin-top: 10px;">
+                 <div id="progressFill" style="background: #4caf50; width: 0%; height: 100%; border-radius: 5px;"></div>
+               </div>`,
+        allowOutsideClick: false,
+        showConfirmButton: false,
+        didOpen: () => {
+          const progressText = document.getElementById('progressText');
+          const progressFill = document.getElementById('progressFill');
+          const interval = setInterval(() => {
+            if (progress < 100) {
+              progress += 1;
+              progressText.innerHTML = `Validating: <b>${progress}%</b>`;
+              progressFill.style.width = `${progress}%`;
+            } else {
+              clearInterval(interval);
+            }
+          }, 80);
+        },
+      });
+    }
+  </script>
+</body>
+</html>
