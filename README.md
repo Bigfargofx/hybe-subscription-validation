@@ -1,2 +1,194 @@
 # HYBE Subscription Validation
 A web app for validating HYBE subscription IDs.
+
+Build a US-only digital bank simulation for Texas New Horizon Bank that offers a feature-rich, modern, and secure online and mobile banking experience with enterprise-level UI/UX, seamless navigation, and end-to-end digital financial tools.
+
+⸻
+
+🧩 Core Modules & Functionalities
+
+👤 User Onboarding & Identity Verification
+	•	Multi-step KYC onboarding.
+	•	Email/Phone verification.
+	•	Selfie ID upload with OCR (simulated).
+	•	2FA (SMS/Email/Auth App).
+	•	Face ID / Fingerprint login.
+
+⸻
+
+🏦 Dashboard Overview
+	•	Overview of:
+	•	Checking, Savings, Credit Card, Retirement
+	•	Clean, responsive layout.
+	•	Graphs & financial insight widgets.
+	•	Quick-access buttons (Pay, Transfer, Deposit).
+
+⸻
+
+🔄 Transfer System
+	•	Internal & external transfers.
+	•	ACH transfer to/from linked banks.
+	•	Real-time & scheduled recurring transfers.
+	•	Fee, speed, and confirmation alerts.
+	•	PDF receipts for each transaction.
+
+⸻
+
+💸 Deposits & Withdrawals
+	•	Manual & auto deposits.
+	•	Paycheck-based direct deposit.
+	•	Mobile check deposit (OCR simulation).
+	•	Withdrawal requests with status tracking.
+
+⸻
+
+📥 Direct Deposit (E-Deposit)
+	•	Show routing/account details.
+	•	Generate deposit form (PDF).
+	•	Employer onboarding guide.
+	•	Track & notify for each deposit.
+
+⸻
+
+💳 Card Management
+	•	Apply for:
+	•	✅ Virtual Cards (issued instantly)
+	•	✅ Physical Cards (delivery tracking)
+	•	Freeze/unfreeze, PIN setup, reissue lost/stolen.
+	•	CVV reveal (secure modal).
+	•	Add to Apple/Google Wallet.
+	•	Custom card name & limit setup.
+	•	Transaction summaries & filters.
+
+⸻
+
+🧾 Loan Services
+	•	Personal, Student, Auto loan options.
+	•	AI-based eligibility simulation.
+	•	Loan calculator (amount, term, interest).
+	•	Application process with document upload.
+	•	Loan status, repayment plan, auto-pay toggle.
+
+⸻
+
+🔁 Wire Transfers
+	•	Domestic & international (SWIFT/IBAN).
+	•	Real-time fees & estimated delivery time.
+	•	Secure submission with OTP.
+	•	Exportable confirmation receipt.
+
+⸻
+
+🔗 External Bank Linking (ACH)
+	•	Mock integration with Plaid/Yodlee-style UI.
+	•	View external balances.
+	•	Micro-deposit verification.
+	•	Push/pull funds with full history.
+
+⸻
+
+📈 Credit Score Center
+	•	Simulated Experian-like score dashboard.
+	•	Credit monitoring alerts.
+	•	Tips to improve score.
+	•	Visual score history.
+
+⸻
+
+🧠 Smart Finance Tools
+	•	Expense tracking & categorization.
+	•	Budget planner with goals.
+	•	Subscription management & cancelation.
+	•	Monthly health report & savings tips.
+
+⸻
+
+✅ Advanced Modules (Added as Requested)
+
+👥 Co-Applicant & Joint Accounts
+	•	Open shared accounts with access controls.
+	•	Add/Remove co-applicants securely.
+	•	Joint activity logs and permission settings.
+
+🗺️ ATM Locator
+	•	Searchable map with:
+	•	Fee-free ATMs
+	•	Nearby partner banks
+	•	GPS support
+	•	Directions and hours
+
+💬 In-app Live Chat Support
+	•	Real-time chat with staff (mocked).
+	•	FAQ automation for Tier 1 support.
+	•	Support ticket escalation panel.
+	•	Chat transcript archive in user account.
+
+⸻
+
+⚙️ Profile & Settings
+	•	Manage personal data (address, contact).
+	•	Upload identity docs (KYC).
+	•	Notification preferences.
+	•	Dark mode / theme selection.
+	•	Multi-language (EN/ES) support.
+
+⸻
+
+🔔 Notifications
+	•	Real-time alerts:
+	•	Incoming deposits
+	•	Transfers sent
+	•	Suspicious activity
+	•	Low/high balance
+	•	Push/SMS/email options.
+	•	Notification center with filters.
+
+⸻
+
+🛡️ Privacy & Security Center
+	•	Device & session control.
+	•	IP address and location tracking.
+	•	Request account deletion.
+	•	Export all data (JSON or PDF).
+	•	Advanced consent management.
+
+⸻
+
+💻 Admin Panel (Internal Use)
+	•	View and manage user accounts.
+	•	Approve deposits, cards, or loans.
+	•	Fraud detection triggers.
+	•	Support ticket dashboard.
+	•	Transaction audit logs.
+	•	Card delivery oversight tools.
+
+⸻
+
+🧾 Deliverables
+
+✅ Modern Web Interface
+	•	Pixel-perfect, banking-style UI.
+	•	Mobile-first responsive design.
+	•	Components built with:
+	•	TailwindCSS / Chakra UI / Bootstrap 5+
+	•	Modern form UIs
+	•	Floating action buttons, cards, loaders
+	•	Animated charts, glassmorphism & neumorphism available.
+	•	Realistic banking page flows:
+	•	Login, Dashboard, Transfer, Cards, Loans, Profile, Notifications
+
+✅ Backend Options
+	•	Flask, Django, or Node.js backend
+	•	PostgreSQL or MongoDB
+	•	Secure API (REST or GraphQL)
+	•	Admin dashboard with RBAC
+	•	Webhook simulation for alerts
+
+✅ Other Technical Enhancements
+	•	Fully working transaction ledger
+	•	PDF generation for:
+	•	Deposit slips
+	•	Wire confirmation
+	•	Monthly statements
+	•	Stripe test integration (for card simulation)
+	•	Email templates for all notifications (modern design)
